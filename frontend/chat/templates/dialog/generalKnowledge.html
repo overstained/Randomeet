@@ -1,0 +1,88 @@
+<div ng-show="$root.dialog.pageIndex === 0">
+    <div ng-show="!showGeneralKnowledgeQuestion">
+      <div layout="row">
+        <md-card flex="50" layout="column" layout-align="center center">
+          <div layout="column" layout-align="center center" flex="30">
+            <div flex="40" layout="row" layout-align="center center">
+              <div layout="column">
+                <h1 layout="row" layout-align="center center" md-title class="chocolate-red">Current GKQ
+                  <md-button class="md-icon-button" ng-click="showGeneralKnowledgeDetails()" aria-label="logic-info">
+                    <md-icon md-svg-icon="action:help_outline" class="navy-blue">
+                      <md-tooltip class="snow" md-direction="right">
+                        More about
+                      </md-tooltip>
+                    </md-icon>
+                  </md-button>
+                </h1>
+                <h1 layout="row" layout-align="center center">{{formatGKQ($root.localUser.gk)}}</h1>
+              </div>
+            </div>
+          </div>
+        </md-card>
+        <div layout="column" layout-align="center center" flex="50">
+          <div id="gkGaussWrapper" layout="row" layout-align="center center" flex="40">
+            <canvas id="gkGaussCanvas">Your browser does not support the HTML5 canvas tag.</canvas>
+          </div>
+        </div>
+    </div>
+    <div layout="row" layout-align="center center">
+      <md-button class="md-default" ng-click="getNextGeneralKnowledgeQuestion()">Request question</md-button>
+    </div>
+    <div layout="row" layout-align="center center">
+      {{$root.localUser.gkR}} daily remaining
+    </div>
+  </div>
+  <div ng-show="showGeneralKnowledgeQuestion">
+    <md-card md-theme="amber">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">
+
+          {{gkQuestion.question}}
+
+        </span>
+      </md-card-title-text>
+    </md-card-title>
+      <md-radio-group class="hspacer-left-5" ng-model="gkQuestion.answerId" >
+              <md-radio-button flex
+                  ng-value="gkQuestion.answers[0].id"
+                  class="md-primary"
+                  aria-label="firstAnswer">
+
+                {{gkQuestion.answers[0].text}}
+
+              </md-radio-button>
+              <md-radio-button flex
+                  ng-value="gkQuestion.answers[1].id"
+                  class="md-primary"
+                  aria-label="secondAnswer">
+
+                {{gkQuestion.answers[1].text}}
+
+              </md-radio-button>
+              <md-radio-button flex
+                  ng-value="gkQuestion.answers[2].id"
+                  class="md-primary"
+                  aria-label="thirdAnswer">
+
+                {{gkQuestion.answers[2].text}}
+
+              </md-radio-button>
+              <md-radio-button flex
+                  ng-value="gkQuestion.answers[3].id"
+                  class="md-primary"
+                  aria-label="fourthAnswer">
+
+                {{gkQuestion.answers[3].text}}
+
+              </md-radio-button>
+        </md-radio-group> 
+    <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="determinate" value="{{GKtimeElapsedPercent}}"></md-progress-circular>
+      </div>
+    <md-card-actions layout="row" layout-align="center center">
+      <md-button class="md-primary md-raised" ng-click="answerGeneralKnowledgeQuestion()"> Answer </md-button>
+    </md-card-actions>
+  </md-card>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div ng-show="$root.dialog.pageIndex === 0">
+  <div layout="row">
+      <div layout="column" layout-align="center center" flex="50">
+        <div flex="40" layout="row" layout-align="center center">
+          <div layout="column">
+            <h1 layout="row" layout-align="center center" md-title class="chocolate-red">Current IQ
+              <md-button class="md-icon-button" ng-click="showLogicDetails()" aria-label="logic-info">
+                <md-icon md-svg-icon="action:help_outline" class="navy-blue">
+                  <md-tooltip class="snow" md-direction="right">
+                    More about
+                  </md-tooltip>
+                </md-icon>
+              </md-button>
+            </h1>
+            <h1 layout="row" layout-align="center center">0</h1>
+          </div>
+        </div>
+      </div>
+      <div layout="column" layout-align="center center" flex="50">
+        <div id="iqGaussWrapper" layout="row" layout-align="center center" flex="40">
+          <canvas id="iqGaussCanvas">Your browser does not support the HTML5 canvas tag.</canvas>
+        </div>
+      </div>
+  </div>
+  <div layout="row" layout-align="center center" flex>
+    <span>Select the correct figure:</span>
+  </div>
+  <div layout="row" layout-align="left center" flex>
+    <span>Difficulty: &nbsp; <span ng-bind-html="getDifficultyElement(iqQuestion.difficulty)"></span></span>
+  </div>
+  <div layout="row">
+    <div layout="column" layout-align="center center" flex="50">
+      <img ng-src="{{iqQuestion.questionLink}}"/>
+    </div>
+    <div layout="column" flex="50">
+      <div layout="row" layout-align="center center" flex="25">
+        <a flex="30" layout-align="left center" layout="column" ng-click="setIQAnswer(iqQuestion.answers[0].id)"><img flex="20" layout="row" ng-src="{{iqQuestion.answers[0].answerLink}}"></a>
+        <div flex="10"></div>
+        <a flex="30" layout-align="right center" layout="column" ng-click="setIQAnswer(iqQuestion.answers[1].id)"><img flex="20" layout="row" ng-src="{{iqQuestion.answers[1].answerLink}}"></a>
+      </div>
+      <div layout="row" layout-align="center center" flex="25">
+        <a flex="30" layout="column" ng-click="setIQAnswer(iqQuestion.answers[2].id)"><img flex="20" layout="row" ng-src="{{iqQuestion.answers[2].answerLink}}"></a>
+        <div flex="10"></div>
+        <a flex="30" layout="column" ng-click="setIQAnswer(iqQuestion.answers[3].id)"><img flex="20" layout="row" ng-src="{{iqQuestion.answers[3].answerLink}}"></a>
+      </div>
+      <div layout="row" layout-align="center center" flex="25">
+        <a flex="30" layout="column" ng-click="setIQAnswer(iqQuestion.answers[4].id)"><img flex="20" layout="row" ng-src="{{iqQuestion.answers[4].answerLink}}"></a>
+        <div flex="10"></div>
+        <a flex="30" layout="column" ng-click="setIQAnswer(iqQuestion.answers[5].id)"><img flex="20" layout="row" ng-src="{{iqQuestion.answers[5].answerLink}}"></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div layout="row" ng-show="$root.dialog.pageIndex === 1">
+  <div flex="10"></div>
+  <div layout="column" layout-align="center center" flex="80">
+    <div flex="20" layout="row" layout-align="center center">
+      <span class="forest-green">IQ</span>(Intelligence quotient) is a score obtained through stadardized tests designed to quantify human intelligence.
+    </div>
+    <div flex="20" layout="row" layout="center center">
+      <span><span class="forest-green">Raven's Progressive Matrices</span> is a non-verbal test used as an estimate for fluid intelligence, which is the capacity to solve novel problems by analyzing, indentifying patterns, relationships and extrapolation of these using logic.</span>
+    </div>
+    <div layout="row" layout-align="start center" flex="10">
+      Example: 
+    </div>
+    <div layout="row" layout-align="center center" flex="40">
+      <img layout="row" flex src="/assets/raven_matrix_example.png">
+    </div>
+    <div layout="row" layout-align="center center" flex="20">
+      Given eight patterns, the subject must identify the missing ninth pattern.
+      In the above example we can see that on each line, starting with the first pattern, each other pattern is obtained by a 90 degree clockwise rotation of the previous one.
+    </div>
+  </div>
+  <div flex="10"></div>
+</div>
+
+<!-- <div class="row"> -->
+<!-- <div class="progress-wrapper text-center col-lg-4 col-md-4" style="font-size: 3rem;"> -->
+	<!-- <div class="progress ng-cloak" ng-style="getStyle()" style="height:30% !important; width: 35% !important;">{{ max-current }}</div>
+	<round-progress
+    max="max"
+    current="current"
+    color="#45ccce"
+    bgcolor="#eaeaea"
+    radius="100"
+    stroke="20"
+    semi="false"
+    rounded="true"
+    clockwise="true"
+    responsive="true"
+    duration="50"
+    animation="easeInOutQuart"
+    animation-delay="0"></round-progress> -->
+ <!-- </div> -->

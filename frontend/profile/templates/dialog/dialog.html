@@ -1,0 +1,36 @@
+<md-dialog aria-label="Profile">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span layout="row"><md-icon flex="10" md-svg-icon="navigation:arrow_back" ng-show="$root.previousState" ng-click="previousPage()" class="hand-cursor"></md-icon><h2>Profile - {{$root.dialog.stateLabel}}</h2></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="width:800px;height:900px;">
+      <md-tabs md-dynamic-height md-stretch-tabs="always">
+        <md-tab label="basic info" ng-disabled="$root.dialog.state !== 'BASIC_INFO'">
+          <md-content class="md-padding">
+          </md-content>
+        </md-tab>
+        <md-tab label="personality" ng-disabled="$root.dialog.state !== 'PERSONALITY'">
+          <md-content class="md-padding">
+            <div ng-include src="'/profile/templates/dialog/personality.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab label="logic" ng-disabled="$root.dialog.state !== 'LOGIC'">
+          <md-content class="md-padding">
+            <div ng-include src="'/profile/templates/dialog/logic.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab label="general knowledge" ng-disabled="$root.dialog.state !== 'GENERAL_KNOWLEDGE'">
+          <md-content class="md-padding">
+            <div ng-include src="'/profile/templates/dialog/generalKnowledge.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab label="settings" ng-disabled="$root.dialog.state !== 'SETTINGS'">
+          <md-content class="md-padding">
+          </md-content>
+        </md-tab>
+        <md-tab>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+</md-dialog>

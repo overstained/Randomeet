@@ -1,0 +1,22 @@
+{
+  "name": "signaling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "signaling-server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "hashmap": "^2.0.6",
+    "socket.io": "^1.7.2",
+    "node-uuid": "^1.4.7"
+  },
+  "scripts": {
+    "start": "node signaling-server.js"
+  },
+  "engines": {
+    "node": "4.2.4"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}

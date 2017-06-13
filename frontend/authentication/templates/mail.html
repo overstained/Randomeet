@@ -1,0 +1,9 @@
+<div layout="column" flex="100">
+	<div layout="row" class="text-center" ng-cloak flex="30" layout-align="center center"> 
+		<span ng-show="!emailSent">An email has been sent at <span class="navy-blue">{{email}}</span>. Please confirm your account by clicking the confirmation link inside the email.</span>
+		<span ng-show="emailSent">Email was resent at <span class="navy-blue">{{email}}</span>.
+	</div>
+	<div layout="row" layout-align="center center">
+	    <md-button class="md-primary md-raised" ng-click="resendEmail()"> Resend email </md-button>
+ 	</div>
+</div>

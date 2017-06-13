@@ -1,0 +1,432 @@
+<div layout="row" flex class="main-background">
+  <div layout="column" flex="30">
+    <div layout="row" flex="65"></div>
+    <div layout="row" flex="100" layout-align="start center">
+      <md-card flex="100" md-theme="default">
+          <md-card-title>
+            <md-card-title-text layout-align="start center">
+              <span class="md-headline" ng-cloak>{{$root.localUser.usr}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <div layout="row" layout-align="space-between">
+            <div ng-show="videoState !== 'LOCAL_VIEW' && videoState !== 'REMOTE_STREAM'" layout="column" flex="80" style="background-color:black;">
+              <div layout="row" layout-align="center center" flex="70">
+                <img ng-src="{{$root.localUser.g === 0?'https://randomeet-assets.herokuapp.com/images/male-avatar.png':'https://randomeet-assets.herokuapp.com/images/female-avatar.png'}}">
+              </div>
+            </div>
+            <div ng-show="videoState === 'LOCAL_VIEW' || videoState === 'REMOTE_STREAM'" layout="column" flex="80">
+              <div layout="row" layout-align="center center" flex="70">
+                <video id="local-web" style="z-index:200;"></video>
+              </div>
+            </div>
+            <md-card-actions layout="column">
+              <md-button class="md-icon-button" aria-label="profile">
+                <md-icon ng-click="showProfileDialog($event)" class="hover-navy-blue" md-svg-icon="navigation:menu">
+                  <md-tooltip md-direction="right">
+                    Profile
+                  </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button ng-show="videoState !== 'LOCAL_VIEW' && videoState !== 'REMOTE_VIEW' && videoState !== 'LOADING_REMOTE_VIEW'" ng-disabled="videoState === 'LOADING_LOCAL_VIEW'" ng-click="showMyCam()" class="md-icon-button" aria-label="local-webcam">
+                <md-icon class="hover-gold" md-svg-icon="av:videocam">
+                    <md-tooltip md-direction="right">
+                      View my webcam (local)
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button ng-show="videoState === 'LOCAL_VIEW'" ng-disabled="videoState === 'LOADING_LOCAL_VIEW'" ng-click="stopMyCam()" class="md-icon-button" aria-label="local-view-stop">
+                <md-icon class="hover-gold" md-svg-icon="av:videocam_off">
+                    <md-tooltip md-direction="right">
+                      Stop my webcam
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button class="md-icon-button" aria-label="membership-status">
+                <md-icon class="hover-forest-green" md-svg-icon="action:card_membership">
+                    <md-tooltip md-direction="right">
+                      Membership status
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="logout()" aria-label="logout">
+                <md-icon class="hover-dark" md-svg-icon="action:highlight_off">
+                    <md-tooltip md-direction="right">
+                      Logout
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+            </md-card-actions>
+          </div>
+           <md-card md-theme="default">
+            <div layout="row" layout-align="start center">
+              <div layout="column" layout-align="start center" flex="50">
+                <div ng-cloak layout="row" class="size-25" layout-align="start center" flex="10"> Age: <span class="navy-blue">&nbsp;&nbsp; {{$root.localUser.a}} </span></div>
+                <div ng-cloak layout="row" class="size-25" layout-align="start center" flex="10"> MBTI: <span class="forest-green">&nbsp;&nbsp; {{$root.localUser.pr}} </span> </div>
+              </div>
+              <div layout="column" layout-align="end center" flex="50">
+                <div ng-cloak layout="row" class="size-25" layout-align="center center" flex="10"> IQ: <span class="chocolate-red">&nbsp;&nbsp; {{formatIQ($root.localUser.iq)}} </span> </div>
+                <div ng-cloak layout="row" class="size-25" layout-align="center center" flex="10"> GKQ: <span class="chocolate-red">&nbsp;&nbsp; {{formatGKQ($root.localUser.gk)}} </span> </div>
+              </div>
+            </div>
+           </md-card>
+      </md-card>
+    </div>
+  </div>
+  <div layout="column" flex="40">
+    <div layout="row" flex="20" layout-align="center center">
+      <img flex="60" src="https://randomeet-assets.herokuapp.com/images/random.png"/>
+    </div>
+    <div flex>
+    <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.9)!important;margin-top:2%;">
+        <div class="panel-heading" style="background: rgba(46, 51, 56, 1)!important;">
+            <div class="panel-title">
+              <md-button ng-show="shouldSaveConversation()" ng-click="saveConversation()" class="md-icon-button" aria-label="local-view-stop">
+                <md-icon class="snow" md-svg-icon="content:save">
+                    <md-tooltip md-direction="right">
+                      Save conversation
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+            </div>
+        </div>
+        <div class="panel-body" >
+           <div class="row"  id="chatBody" style="max-height:100%; height:100%;">
+            <perfect-scrollbar scroll-down="true" class="scroller" wheel-propagation="true" wheel-speed="5" refresh-on-change="messages" min-scrollbar-length="20" suppress-scroll-x="true">
+                <div layout="column" style="padding-left: 10px; padding-right:15px;">
+                  <div ng-repeat="user in messages" style="margin-top:1px;">
+                      <div class="snow" ng-style="topLeftStyle(user.index, user.type)" style="padding-top:5px;padding-bottom:5px; padding-left:5%; padding-right:5%;border-style: none; display: inline-block;">
+                            <div style="word-wrap: break-word;display: inline-block; max-width:200px;" compile="user.text"></div><!-- 
+                            <div class="dark-grey size-12" ng-bind="user.date |  date:'HH:mm:ss'"></div> -->
+                      </div>
+                   </div>
+                </div>
+              </perfect-scrollbar>
+            </div>
+            <div class="row" style="margin-left:1%;padding:1%;">
+              <span ng-show="userIsTyping"> {{remoteUser.usr}} is typing...</span>
+            </div>
+            <div class="row" style="padding:1%;">
+                <div class="col-lg-12 col-md-12">
+                  <div class="input-group">
+                      <input class="form-control input-large" ng-keypress="sendMessage($event)" style="background: rgba(255, 255, 255, 0.8)!important;" type="text" placeholder="Add to the conversation" ng-change='lastCharTyped()' ng-model="chat.message" id="inputText">
+                      <span class="input-group-addon" style="background-color:grey; color:white; cursor:pointer;border-radius:5px;" ng-click="sendMessage()" >Send</span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+     </div>
+  </div>
+
+</div>
+  <div layout="column" flex="30">
+   <div layout="row" flex="65"></div>
+    <div layout="row" flex="100" layout-align="start center">
+    <md-card flex="100" md-theme="default">
+        <div ng-show="matchState === 'IDLE' || matchState === 'LOOKING_FOR_MATCH'">
+          <md-card-title>
+            <md-card-title-text layout-align="center center">
+              <span class="md-headline">???</span>
+            </md-card-title-text>
+         </md-card-title>
+         <div layout="row" layout-align="space-between">
+          <md-card-actions layout="column">
+             <md-button ng-disabled class="md-icon-button" aria-label="Follow">
+              <md-icon md-svg-icon="action:favorite" class="hover-chocolate-red">
+                <md-tooltip md-direction="left">
+                  Follow(not yet implemented)
+                </md-tooltip>
+              </md-icon>
+            </md-button>
+            <md-button ng-disabled class="md-icon-button" aria-label="Request remote webcam">
+              <md-icon md-svg-icon="av:videocam">
+                  <md-tooltip md-direction="left">
+                    Request webcam exchange
+                  </md-tooltip>
+              </md-icon>
+            </md-button>
+          </md-card-actions>
+          <div layout="column" flex="80" style="background-color:black;" layout-align="center center">
+            <div layout="column" layout-align="center center" flex="60">
+              <div layout="row">
+                <md-button ng-show="matchState !== 'LOOKING_FOR_MATCH'" flex="40" class="md-default md-raised" ng-click="match()">Match me</md-button>
+                <md-progress-circular ng-show="matchState === 'LOOKING_FOR_MATCH'" md-mode="indeterminate"></md-progress-circular>
+              </div>
+            </div>
+          </div>
+         </div>
+          <md-card md-theme="default">
+           <div layout="row" layout-align="start center">
+              <div layout="column" layout-align="start center" flex="50">
+                <div ng-cloak layout="row" class="size-25" layout-align="start center" flex="10"> Age: <span class="navy-blue">&nbsp;&nbsp; ?</span></div>
+                <div ng-cloak layout="row" class="size-25" layout-align="start center" flex="10"> MBTI: <span class="forest-green">&nbsp;&nbsp; ? </span> </div>
+              </div>
+              <div layout="column" layout-align="end center" flex="50">
+                <div ng-cloak layout="row" class="size-25" layout-align="center center" flex="10"> IQ: <span class="chocolate-red">&nbsp;&nbsp; ? </span> </div>
+                <div ng-cloak layout="row" class="size-25" layout-align="center center" flex="10"> GKQ: <span class="chocolate-red">&nbsp;&nbsp; ? </span> </div>
+              </div>
+            </div>
+         </md-card>
+        </div>
+        <div ng-show="matchState === 'MATCHED'">
+          <md-card-title>
+            <md-card-title-text layout-align="center center">
+              <span class="md-headline">{{remoteUser.usr}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <div layout="row" layout-align="space-between">
+            <md-card-actions layout="column">
+               <md-button class="md-icon-button" aria-label="Settings">
+                <md-icon md-svg-icon="action:favorite" class="hover-chocolate-red">
+                  <md-tooltip md-direction="left">
+                    Follow(not yet implemented)
+                  </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button ng-show="matchState === 'MATCHED' && videoState !== 'REMOTE_STREAM'" ng-click="requestMedia()" class="md-icon-button" aria-label="Share">
+                <md-icon class="hover-gold" md-svg-icon="av:videocam">
+                    <md-tooltip md-direction="left">
+                      Request webcam exchange
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button  ng-show="videoState === 'REMOTE_STREAM'" ng-click="stopMedia()" class="md-icon-button" aria-label="Share">
+                <md-icon class="hover-gold" md-svg-icon="av:videocam_off">
+                    <md-tooltip md-direction="left">
+                      Stop webcam exchange
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button ng-show="videoState === 'REMOTE_STREAM'" ng-click="fullScreenWebExchange($event)" class="md-icon-button" aria-label="Share">
+                <md-icon class="hover-gold" md-svg-icon="action:settings_overscan">
+                    <md-tooltip md-direction="left">
+                      Full screen webcam exchange
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="stopConversation()" aria-label="stop conversation">
+                <md-icon class="hover-dark" md-svg-icon="action:highlight_off">
+                    <md-tooltip md-direction="left">
+                      Stop conversation
+                    </md-tooltip>
+                </md-icon>
+              </md-button>
+            </md-card-actions>
+            <div ng-show="videoState !== 'REMOTE_STREAM'"  layout="column" flex="80" style="background-color:black;">
+              <div layout="row" layout-align="center center" flex="60">
+                 <img ng-src="{{$root.localUser.g === 0?'https://randomeet-assets.herokuapp.com/images/male-avatar.png':'https://randomeet-assets.herokuapp.com/images/female-avatar.png'}}">
+              </div>
+            </div>
+            <div ng-show="videoState === 'REMOTE_STREAM'" layout="column" flex="80">
+              <div layout="row" layout-align="center center" flex="60">
+                    <video style="z-index:200;"></video>
+              </div>
+            </div>
+          </div>
+          <md-card md-theme="default">
+             <div layout="row" layout-align="start center">
+                <div layout="column" layout-align="start center" flex="50">
+                  <div ng-cloak layout="row" class="size-25" layout-align="start center" flex="10"> Age: <span class="navy-blue">&nbsp;&nbsp; {{remoteUser.a}} </span></div>
+                  <div ng-cloak layout="row" class="size-25" layout-align="start center" flex="10"> MBTI: <span class="forest-green">&nbsp;&nbsp; {{remoteUser.pr}} </span> </div>
+                </div>
+                <div layout="column" layout-align="end center" flex="50">
+                  <div ng-cloak layout="row" class="size-25" layout-align="center center" flex="10"> IQ: <span class="chocolate-red">&nbsp;&nbsp; {{formatIQ(remoteUser.iq)}} </span> </div>
+                  <div ng-cloak layout="row" class="size-25" layout-align="center center" flex="10"> GKQ: <span class="chocolate-red">&nbsp;&nbsp; {{formatGKQ(remoteUser.gk)}} </span> </div>
+                </div>
+              </div>
+          </md-card>
+        </div>
+    </md-card>
+   </div>
+  </div>
+ </div>
+</div>
+
+             <!--  <div class = "col-lg-3 col-md-3" style="margin-top:9%;margin-left:3%;">
+                <div class="panel panel-default">
+                  <div class="panel-body" >
+                    <div class="row">
+                      <div class="col-md-2 col-lg-2"></div>
+                      <div class="col-md-8 col-lg-8">
+                        <div class="center-block text-center">
+                          <span class="pixelated" style="color:blue;">{{localUser.usr}}</span>
+                          <img  style="width:8%;" src="../assets/premium_icon.png" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top:3%;">
+                      <button class="btn center-block pixelated" style="font-size:10px;background-color:orange;height:25px;" ng-click="logout()">Logout</button>
+                    </div>
+                    <div class="row center-block" style="margin-top:5%;">
+                      <img ng-click="showLocalProfileModal()" ng-if="!showVideo" ng-src="{{localUser.g === 'Male'?'../assets/jon.png':'../assets/anonymous.png'}}" class="img-responsive center-block">
+                      <video ng-click="showLocalProfileModal()" id="localVideo" ng-show="showVideo" style="width:100%; height: 50%;">
+                      </video>
+                    </div>
+                    <div class="row text-left center-block" style="margin-top:5%;">
+                      <div class="panel panel-default">
+                        <ul style="list-style-type:none;font-size:12px;">
+                          <li><span class="pixelated">Age:</span><span class="pixelated" style="color:red;"> {{localUser.bd}}</span></li>
+                          <li><span class="pixelated">MBTI:</span><span class="pixelated" style="color:red;"> {{localUser.p}}</span></li>
+                          <li><span class="pixelated">IQ:</span><span class="pixelated" style="color:red;"> {{localUser.iq}}</span></li>
+                          <li><span class="pixelated">GKI:</span><span class="pixelated" style="color:red;">{{localUser.gk}}</span></li>
+                        </ul>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class = "col-lg-5 col-md-5 ">
+                <div class="row" style="margin-top:3%;">
+                  <img src = "assets/random.png" class="img-responsive center-block" alt="Responsive image">
+                </div>
+                
+            </div>
+            <div class = "col-lg-3 col-md-3" style="margin-top:9%;" ng-if="matchState === 'MATCHED'">
+                <div class="panel panel-default">
+                  <div class="panel-body" >
+                    <div class="row text-center">
+                        <p class="pixelated" style="color:blue;">{{remoteUser.usr}}</p>
+                    </div>
+                    <div class="row" style="margin-top:3%;">
+                      <button class="btn center-block pixelated" style="font-size:10px;background-color:orange;height:25px;" ng-click="stopConversation()">Stop conversation</button>
+                    </div>
+                    <div  class="row center-block text-center" style="margin-top:5%;">
+                      <a ng-if="!showVideo" ng-click="showRemoteProfileModal()"><img ng-src="{{remoteUser.g === 'Male'?'../assets/jon.png':'../assets/anonymous.png'}}" class="img-responsive center-block"></a>
+                      <video id="remoteVideo" ng-show="showVideo" ng-click="showRemoteProfileModal()" style="width:100%; height: 50%;">
+                      </video>
+                    </div>
+                    <div class="row text-left center-block" style="margin-top:5%;">
+                      <div class="panel panel-default">
+                        <ul style="list-style-type:none;font-size:12px;">
+                          <li><span class="pixelated">Age:</span><span class="pixelated" style="color:red;">{{remoteUser.bd}}</span></li>
+                          <li><span class="pixelated">MBTI:</span><span class="pixelated" style="color:red;"> {{remoteUser.p}}</span></li>
+                          <li><span class="pixelated">IQ:</span><span class="pixelated" style="color:red;"> {{remoteUser.iq}}</span></li>
+                          <li><span class="pixelated">GKI:</span><span class="pixelated" style="color:red;">{{remoteUser.gk}}</span></li>
+                        </ul>
+                      </div>
+                      <button ng-if="!showStopWebButton" ng-click="requestMedia()" ng-disabled = "disableWebRequest" class="pixelated btn btn-warning btn-lg btn-block">Request webcam</button>
+                      <button ng-if="showStopWebButton" ng-click="stopWeb()" class="pixelated btn btn-warning btn-lg btn-block">Stop webcam</button>
+                     </div>
+                  </div>
+                </div>
+            </div>
+            <div class = "col-lg-3 col-md-3" style="margin-top:9%;" ng-if="matchState === 'LOOKING_FOR_MATCH'">
+                <div class="panel panel-default">
+                  <div class="panel-body" >
+                    <div class="row center-block text-center">
+                      <p class="pixelated">Looking for a match...</p>
+                    </div>
+                    <div class="row text-center" style="margin-top:20%;">
+                      <i class="fa fa-spinner fa-spin center-block" style="font-size:60px;padding:12%;"></i>
+                    </div>
+                    <div class="row" style="height:26%">
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class = "col-lg-3 col-md-3" style="margin-top:9%;" ng-if="matchState === 'IDLE'">
+                <div class="panel panel-default">
+                  <div class="panel-body" >
+                    <div class="row text-center">
+                        <p class="pixelated">...?</p>
+                    </div>
+                    <div class="row center-block" style="margin-top:10%;">
+                      <img  src="../assets/question_mark.png" class="img-responsive center-block">
+                    </div>
+                    <div class="row text-left center-block">
+                      <div class="panel panel-default">
+                            <button class="pixelated btn btn-success btn-lg btn-block">Filter</button><br>
+                            <button ng-click="match()" class="pixelated btn btn-warning btn-lg btn-block">Match me</button>
+                      </div>
+                     </div>
+                  </div>
+                </div>
+            </div>
+</div> -->
+<!--  <modal id="userModal">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-4 col-xs-offset-4"><img src="{{currUser.picture}}" class="img-thumbnail img-responsive img-circle"></div>
+      </div>
+      <hr>
+      <div class="row">
+        <h4 class="text-center"><i class="fa fa-fw fa-map-marker fa-2x"></i> {{currUser.location.street}} {{currUser.location.city}}, {{currUser.location.state}}</h4>
+        <h4 class="text-center"><i class="fa fa-fw fa-phone fa-2x"></i> {{currUser.cell}}</h4>
+        <h4 class="text-center"><i class="fa fa-fw fa-envelope-o fa-2x"></i> {{currUser.email}}</h4>
+        <h4 class="text-center"><i class="fa fa-fw fa-user fa-2x"></i> {{currUser.username}}</h4>
+      </div>
+    </div>
+ </modal>
+ <modal id="paymentModal">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-primary panel-payment">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Silver</h3>
+                </div>
+                <div class="panel-body panel-body-payment">
+                    <div class="the-price">
+                        <h1>
+                            $1.99</h1>
+                    </div>
+                    <table class="table">
+
+                        <tr>
+                            <td>
+              <span class="glyphicon glyphicon-ok text-success">
+              </span>
+                                200 credits
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-footer">
+            <span>
+             <img src="../assets/paypal-icon.png"/>
+          </span>
+                    <a href="http://www.jquery2dotnet.com" class="btn btn-primary" role="button">Recharge</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-success panel-payment">
+                <div class="cnrflash">
+                    <div class="cnrflash-inner">
+                        <span class="cnrflash-label">MOST
+                            <br>
+                            POPULAR</span>
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Gold</h3>
+                </div>
+                <div class="panel-body panel-body-payment">
+                    <div class="the-price">
+                        <h1>
+                            $3.99</h1>
+                    </div>
+                    <table class="table">
+                        <tr >
+                            <td>
+              <span class="glyphicon glyphicon-ok text-success">
+              </span>
+                                450 credits
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-footer">
+            <span>
+             <img src="../assets/paypal-icon.png"/>
+          </span>
+                    <a href="http://www.jquery2dotnet.com" class="btn btn-success" role="button">Recharge</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</modal> -->

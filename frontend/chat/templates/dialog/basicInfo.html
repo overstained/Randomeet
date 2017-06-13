@@ -1,0 +1,232 @@
+<div ng-show="$root.dialog.pageIndex === 0">
+    <div layout="column">
+      <div layout="row" flex="30" layout-align="center center">
+        <img ng-src="{{$root.localUser.g === 0?'../assets/male-avatar.png':'../assets/female-avatar.png'}}" flex="20">
+      </div>
+      <div layout="row" flex="60">
+        <div flex="15"></div>
+          <md-list flex="70">
+            <md-list-item>
+              <div layout="row" flex="100">
+                <span layout="row" flex="25" layout-align="start center">Username</span>
+                <span layout="row" class="navy-blue" flex="75" layout-align="center center" ng-cloak>{{$root.localUser.usr}}</span>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <div layout="row" flex="100" layout-align="space-between">
+                <span layout="row" flex="25" layout-align="start center">Email</span>
+                <span layout="row" class="navy-blue" flex="75" layout-align="center center"ng-cloak>{{$root.localUser.em}}</span>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <div layout="row" flex="100" layout-align="space-between">
+                <span layout="row" flex="25" layout-align="start center">Birthday</span>
+                <span layout="row" ng-show="!changeBirthdate" class="navy-blue hand-cursor" flex="75" ng-click="changeBirthdate = true" layout-align="center center">{{formatBirthdate(basicInfoUpdate.birthdate || $root.localUser.bd)}}</span>
+                <span layout="row" ng-show="changeBirthdate" flex="75" layout-align="center center">
+                  <md-datepicker name="birthdate" ng-change="changeBirthdate = false; shouldSaveBasicInfo()" ng-model="basicInfoUpdate.birthdate" md-placeholder="Select date of birth"
+                  md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                </span>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <div layout="row" flex="100" layout-align="space-between">
+                <span layout="row" flex="25" layout-align="start center">Gender</span>
+                <span layout="row" ng-show="!changeGender" class="navy-blue hand-cursor" ng-click="changeGender = true" flex="75" layout-align="center center">{{formatGender(basicInfoUpdate.gender || $root.localUser.g)}}</span>
+                <span layout="row" flex="75" layout-align="center center" ng-show="changeGender">
+                   <md-input-container >
+                    <md-select aria-label="gender-select" ng-model="basicInfoUpdate.gender" ng-change="changeGender = false; shouldSaveBasicInfo()">
+                      <md-option ng-value="0">Male</md-option>
+                      <md-option ng-value="1">Female</md-option>
+                    </md-select>
+                  </md-input-container>
+                </span>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <div layout="row" flex="100" layout-align="center center">
+                <md-button class="md-primary" ng-class="{'md-raised': basicInfoSaveNeeded}" ng-click="updateProfile()">Save</md-button>
+              </div>
+            </md-list-item>
+            <md-list-item ng-show="!$root.localUser.f">
+              <div layout="row" flex="100" layout-align="center center">
+                <md-button ng-click="changePasswordPage()">Change password</md-button>
+              </div>
+            </md-list-item>
+          </md-list>
+        <div flex="15"></div>
+      </div>
+    </div>
+</div>
+<div ng-show="$root.dialog.pageIndex === 1">
+  <div layout="column">
+      <div layout="row" flex="30" layout-align="center center">
+        <img ng-src="{{$root.localUser.g === 0?'../assets/male-avatar.png':'../assets/female-avatar.png'}}" flex="20">
+      </div>
+      <div layout="row" flex="70" layout-align="center center">
+        <div layout="column">
+          <md-input-container class="md-icon-float md-block">
+            <label>Old password</label>
+            <input type="text">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>New password</label>
+            <input type="text">
+          </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Retype new password</label>
+            <input type="text">
+          </md-input-container>
+          <md-button ng-click="changePassword()">Change password</md-button>
+        </div>
+      </div>
+</div>
+<!-- <div style="width:100vw;height:100vh;">
+       <modal id="localProfileModal" title="Profile">
+          <div class="container pixelated" ng-cloak>
+            <div class="row" style="width:70vw;">
+              <div class="col-md-3" style="margin-top:10%;text-align:left !important;">
+                <ul style="list-style-type:none;">
+                  <li><p ng-click="menuStates.localActiveMenuItem = 'BASIC_PROFILE'" style="color:black;cursor:hand;cursor:pointer;">Basic info</p></li><hr>
+                  <li><p ng-click="menuStates.localActiveMenuItem = 'PERSONALITY'" style="color:'black';cursor:hand;cursor:pointer;">Personality</p></li><hr>
+                  <li ><p ng-click="menuStates.localActiveMenuItem = 'LOGIC'" style="color:black;cursor:hand;cursor:pointer;">Logic</p></li><hr>
+                  <li ><p ng-click="menuStates.localActiveMenuItem = 'GENERAL_KNOWLEDGE'" style="color:black;cursor:hand;cursor:pointer;">General knowledge</p></li><hr>
+                  <li ><p ng-click="menuStates.localActiveMenuItem = 'STATISTICS'" style="color:black;cursor:hand;cursor:pointer;">Statistics</p></li><hr>
+                  <li ><p ng-click="menuStates.localActiveMenuItem = 'SETTINGS'" style="color:black;cursor:hand;cursor:pointer;">Settings</p></li>
+                </ul>
+              </div>
+              <div id="verticalDivider" class="col-md-1" style="height:90%;border-right: 1px solid #333;"></div>
+              <div class="col-md-8"  ng-show="menuStates.localActiveMenuItem === 'BASIC_PROFILE'">
+                <div class="row center-block" style="margin-top:5%;">
+                  <img ng-src="{{localUser.g === 'Male'?'../assets/jon.png':'../assets/anonymous.png'}}" class="img-responsive center-block">
+                </div>
+                <div class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-10">
+                    <div class="row" style="margin-top:10%;">
+                      <div class="col-md-4">
+                        Username:
+                      </div>
+                      <div class="col-md-6 text-center" ng-cloak>
+                        timmy
+                      </div>
+                      </div><hr>
+                      <div class="row">
+                        <div class="col-md-4 col-lg-4">
+                          Email:
+                        </div>
+                        <div class="col-md-6 text-center" ng-cloak>
+                          timmy@live.com
+                        </div>
+                      </div><hr>
+                      <div class="row">
+                        <div class="col-md-4 col-lg-4">
+                          Gender:
+                        </div>
+                        <div class="col-md-6 text-center" ng-cloak>
+                          Female
+                        </div>
+                        <div class="col-md-2 text-right">
+                          <a>Edit</a>
+                        </div>
+                      </div><hr>
+                      <div class="row">
+                        <div class="col-md-4 col-lg-4">
+                          Date of birth:
+                        </div>
+                        <div class="col-md-6 text-center" ng-cloak>
+                          1992-11-05
+                        </div>
+                        <div class="col-md-2 text-right">
+                          <a>Edit</a>
+                        </div>
+                      </div><hr>
+                      <div class="row">
+                        <div class="col-md-4">
+                          Membership status:
+                        </div>
+                        <div class="col-md-6 text-center" ng-cloak>
+                          INACTIVE
+                        </div>
+                        <div class="col-md-2 text-right">
+                          <a>Boost</a>
+                        </div>
+                      </div><hr>
+                    <div class="row" ng-show="!localUser.f">
+                      <div class="col-md-12 col-lg-12 text-center">
+                        <a>Change password</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8 col-lg-8" ng-show="menuStates.localActiveMenuItem === 'PERSONALITY'">
+                  <div class ="row text-center" style="margin-top:5%; color:#FF4040;">
+                    <div class="col-md-1 col-lg-1">
+                    </div>
+                    <div class="col-md-10 col-lg-10">
+                      <h2 style="color:#015201"><span>ESFJ</span>
+                        <span>
+                          <img src="../assets/question-icon.png" style="margin-top:-4vh;margin-left:-5%;width:5%;">
+                        </span>
+                      </h2>
+                    </div>
+                    <div class="col-md-1 col-lg-1">
+                    </div>
+                  </div>
+                  <div ng-show="!button.on" style="margin-top:10%;">
+                    <div class="row">
+                      <div class="col-md-1"></div>
+                      <div class="col-md-10">
+                        <p>&nbsp;&nbsp;ESFJs project warmth through a genuine interest in the well-being of others. 
+
+                        <p>&nbsp;&nbsp;They are often skilled at bringing out the best in people, and they want to understand other points of view. </p>
+                        <p>&nbsp;&nbsp;They are serious about their responsibilities, seeing what needs to be done and then doing it. Generally proficient at detailed tasks, they enjoy doing little things that make life easier for others.
+                        </p>
+                        <p>&nbsp;&nbsp;They value tradition and the security it offers.</p>
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top:5%;">
+                      <button class="btn-success btn-lg center-block" ng-click="button.on=true">Request question</button>
+                    </div>
+                  </div>
+                  <div ng-show="button.on" style="margin-top:10%;">
+                    <div class="row">
+                      <span style="font-size:12px;">How much do you agree with the following statement:</span>
+                    </div>
+                    <div class="panel panel-success" style="margin-top:5%;">
+                      <div class="panel-heading">
+                        <span class="badge">{{personalityQuestion.index}}</span>
+                          <span>{{personalityQuestion.question}}</span>
+                      </div>
+                      <div class="panel-body">
+                          <div class="row">
+                            <div class="col-md-1 col-lg-1">
+                            </div>
+                            <div class="col-md-10 col-lg-10">
+                              <rzslider style="font-size:10px" rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>
+                            </div>
+                            <div class="col-md-1 col-lg-1">
+                            </div>
+                          </div>
+                          <div class="row text-center" style="margin-top:5%;">
+                              <button class="btn-success btn-lg" ng-click="setPersonalityAnswer()">Answer</button>
+                          </div>
+                      </div>
+                   </div>
+                  </div>
+              </div>
+              <div class="col-md-8 col-lg-8" ng-show="menuStates.localActiveMenuItem === 'LOGIC'">
+              </div>
+              <div class="col-md-8 col-lg-8" ng-show="menuStates.localActiveMenuItem === 'GENERAL_KNOWLEDGE'">
+              </div>
+              <div class="col-md-8 col-lg-8" ng-show="menuStates.localActiveMenuItem === 'STATISTICS'">
+              </div>
+              <div class="col-md-8 col-lg-8" ng-show="menuStates.localActiveMenuItem === 'SETTINGS'">
+              </div>
+            </div>
+          </div>
+        </modal> -->

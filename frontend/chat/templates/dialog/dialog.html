@@ -1,0 +1,38 @@
+<md-dialog aria-label="Profile">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span layout="row"><md-icon flex="10" md-svg-icon="navigation:arrow_back" ng-show="$root.previousState" ng-click="previousPage()" class="hand-cursor"></md-icon><h2>Profile - {{$root.dialog.stateLabel}}</h2></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="width:800px;height:800px;">
+      <md-tabs md-dynamic-height md-stretch-tabs="always">
+        <md-tab label="basic info" md-on-select="openedBasicInfoTab()">
+          <md-content class="md-padding">
+            <div ng-include src="'/chat/templates/dialog/basicInfo.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab label="personality" md-on-select="openedPersonalityTab()">
+          <md-content class="md-padding">
+            <div ng-include src="'/chat/templates/dialog/personality.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab label="logic" md-on-select="openedLogicTab()">
+          <md-content class="md-padding">
+            <div ng-include src="'/chat/templates/dialog/logic.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab label="general knowledge" md-on-select="openedGeneralKnowledgeTab()">
+          <md-content class="md-padding">
+            <div ng-include src="'/chat/templates/dialog/generalKnowledge.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab label="settings" md-on-select="openedSettingsTab()">
+          <md-content class="md-padding">
+            <div ng-include src="'/chat/templates/dialog/settings.html'"></div>
+          </md-content>
+        </md-tab>
+        <md-tab>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+</md-dialog>

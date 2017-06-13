@@ -1,0 +1,63 @@
+<md-dialog aria-label="Filter settings">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Filter settings</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="width:400px;height:400px;" layout-align="center center">
+      <md-switch ng-click="$root.saveMatchFilter()" class="md-primary" md-no-ink aria-label="Gender filter" ng-model="matchFilter.gender.genderEnabled">
+        Gender filter
+      </md-switch>
+      <div ng-show="matchFilter.gender.genderEnabled">
+        <md-select ng-change="$root.saveMatchFilter()" aria-label="gender-select" ng-model="matchFilter.gender.value">
+          <md-option ng-value="0">Male</md-option>
+          <md-option ng-value="1">Female</md-option>
+        </md-select>
+      </div>
+      <md-switch ng-click="$root.saveMatchFilter()" class="md-primary" md-no-ink aria-label="Age filter" ng-model="matchFilter.age.ageEnabled">
+        Age filter
+      </md-switch>
+      <div ng-show="matchFilter.age.ageEnabled">
+        {{matchFilter.age.lowerBound}}-{{matchFilter.age.upperBound}}
+        <div layout="row">
+          <div flex="80" ng-mouseup="$root.saveMatchFilter()" data-range-slider
+                         data-floor="10"
+                         data-ceiling="120"
+                         data-dragstop="true"
+                         data-ng-model-low="matchFilter.age.lowerBound"
+                         data-ng-model-high="matchFilter.age.upperBound"></div>
+        </div>
+      </div>
+      <md-switch ng-click="$root.saveMatchFilter()" class="md-primary" md-no-ink aria-label="Personality filter" ng-model="matchFilter.personality.personalityEnabled">
+        Personality filter
+      </md-switch>
+      <md-switch ng-click="$root.saveMatchFilter()" class="md-primary" md-no-ink aria-label="IQ filter" ng-model="matchFilter.logic.logicEnabled">
+        IQ filter
+      </md-switch>
+      <div ng-show="matchFilter.logic.logicEnabled">
+        {{matchFilter.logic.lowerBound}}-{{matchFilter.logic.upperBound}}
+        <div layout="row">
+          <div flex="80" ng-mouseup="$root.saveMatchFilter()" data-range-slider
+                         data-floor="0"
+                         data-ceiling="170"
+                         data-dragstop="true"
+                         data-ng-model-low="matchFilter.logic.lowerBound"
+                         data-ng-model-high="matchFilter.logic.upperBound"></div>
+        </div>
+      </div>
+      <md-switch ng-click="$root.saveMatchFilter()" class="md-primary" md-no-ink aria-label="GKQ filter" ng-model="matchFilter.generalKnowledge.generalKnowledgeEnabled">
+        GKQ filter
+      </md-switch>
+      <div ng-show="matchFilter.generalKnowledge.generalKnowledgeEnabled">
+        {{matchFilter.generalKnowledge.lowerBound}}-{{matchFilter.generalKnowledge.upperBound}}
+        <div layout="row">
+          <div flex="80" ng-mouseup="$root.saveMatchFilter()" data-range-slider
+                         data-floor="0"
+                         data-ceiling="170"
+                         data-dragstop="true"
+                         data-ng-model-low="matchFilter.generalKnowledge.lowerBound"
+                         data-ng-model-high="matchFilter.generalKnowledge.upperBound"></div>
+        </div>
+      </div>
+    </md-dialog-content>
+</md-dialog>

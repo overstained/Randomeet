@@ -1,0 +1,98 @@
+<html>
+<head>
+	<base href="/" />
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/angular-chart.js/dist/angular-chart.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/components-font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/angular-bootstrap-simple-chat/src/css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/styles/custom.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/styles/font.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/angular-wizard/dist/angular-wizard.min.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/perfect-scrollbar/min/perfect-scrollbar.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/angular-material/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="https://randomeet-app.herokuapp.com/bower_components/angular-range-slider/angular-range-slider.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Economica|Lobster|Offside" rel="stylesheet">
+
+	<script src="https://randomeet-app.herokuapp.com/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular/angular.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-route/angular-route.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="https://randomeet-app.herokuapp.com/bower_components/angular-bootstrap-simple-chat/src/scripts/index.js"></script>
+    <script src="https://randomeet-app.herokuapp.com/bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="https://randomeet-app.herokuapp.com/bower_components/angular-base64/angular-base64.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/moment/min/moment.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/Chart.js/Chart.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+ 	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
+ 	<script src="https://randomeet-app.herokuapp.com/bower_components/perfect-scrollbar/min/perfect-scrollbar.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/perfect-scrollbar/min/perfect-scrollbar.with-mousewheel.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-animate/angular-animate.min.js"></script>
+  	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-aria/angular-aria.min.js"></script>
+  	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-messages/angular-messages.min.js"></script>
+  	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-range-slider/angular-range-slider.min.js"></script>
+  	<script src="https://randomeet-app.herokuapp.com/bower_components/angular-file-saver/dist/angular-file-saver.bundle.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
+	<script src="https://randomeet-app.herokuapp.com/mainModule.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/dataInterceptor.js"></script>
+
+	<!-- start login component -->
+	<script src="https://randomeet-app.herokuapp.com/authentication/loginModule.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/authentication/loginConstants.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/authentication/loginService.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/authentication/facebookService.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/authentication/tokenService.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/authentication/loginController.js"></script>
+	<!-- end login component -->
+
+	<!-- start personality -->
+	<script src="https://randomeet-app.herokuapp.com/personality/personalityService.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/personality/personalityConstants.js"></script>
+	<!-- end personality -->
+
+	<!-- start intelligence -->
+	<script src="https://randomeet-app.herokuapp.com/intelligence/iqService.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/intelligence/iqConstants.js"></script>
+	<!-- end intelligence -->
+
+	<!-- start general knowledge -->
+	<script src="https://randomeet-app.herokuapp.com/general_knowledge/gkService.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/general_knowledge/gkConstants.js"></script>
+	<!-- end general knowledge -->
+
+	<!-- start profile -->
+	<script src="https://randomeet-app.herokuapp.com/profile/profileController.js"></script>
+	<!-- end profile -->
+
+	<!-- start chat component -->
+	<script src="https://randomeet-app.herokuapp.com/chat/chatModule.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/chat/signaling/adapter.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/chat/signaling/socket.min.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/chat/chatConstant.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/chat/chatController.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/chat/profileControllerChat.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/chat/fullWebcamController.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/chat/signaling/signalingService.js"></script>
+
+	<script src="https://randomeet-app.herokuapp.com/genericConstants.js"></script>
+	<script src="https://randomeet-app.herokuapp.com/compile.js"></script>
+	<!-- end chat component -->
+
+
+</head>
+<body ng-app="mainModule">
+	<div id="fb-root"></div>
+	<div ui-view></div>
+</body>
+</html>

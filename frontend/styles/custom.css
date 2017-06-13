@@ -1,0 +1,212 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Economica', sans-serif !important;
+    font-size: 18px !important;
+}
+
+.main-background {
+    height: 60vh;
+    background-color: #ebf1ff;
+}
+
+.hand-cursor {
+    cursor: pointer;
+    cursor: hand;
+}
+
+ .large-button {
+    width: 300px;
+    height: 70px;
+    font-size: 30px !important;
+}
+
+.vspacer-1 {
+    margin-top: 1%;
+}
+
+.vspacer-5 {
+    margin-top: 5%;
+}
+
+.vspacer-10 {
+    margin-top: 10%;
+}
+
+.vspacer-15 {
+    margin-top: 15%;
+}
+
+.vspacer-20 {
+    margin-top: 20%;
+}
+
+.vspacer-25 {
+    margin-top: 25%;
+}
+
+.vspacer-30 {
+    margin-top: 30%;
+}
+
+.vspacer-35 {
+    margin-top: 35%;
+}
+
+.vspacer-40 {
+    margin-top: 40%;
+}
+
+.responsive-image-10 {
+    width: 10%; 
+    height:auto;
+}
+
+.responsive-image-30-20 {
+    width: 30%; 
+    height: 60%;
+}
+
+.responsive-image-25 {
+    width: 25%; 
+    height:auto;
+}
+
+.responsive-image-50 {
+    width: 50%; 
+    height:auto;
+}
+
+.responsive-image {
+    width: 100%; 
+    height:auto;
+}
+
+.responsive-image-150 {
+    width: 150%; 
+    height:auto;
+}
+
+.hspacer-left-5 {
+    margin-left:5%;
+}
+
+.dark-grey {
+    color: #b1b1b1 !important;
+};
+
+.navy-blue {
+    color: navy !important;
+}
+
+.dark {
+    color: black !important;
+}
+
+.common-red {
+    color: red !important;
+}
+
+.chocolate-red {
+    color: #dd3f20 !important;
+}
+
+.amber {
+    color: #ffe57f !important;
+}
+
+.copy-cat {
+    color: indigo !important;
+}
+
+.snow {
+    color: white !important;
+}
+
+.forest-green {
+    color: #339933 !important;
+}
+
+.gold {
+    color: #ffc51c !important;
+}
+
+.size-8 {
+    font-size:8px !important;
+}
+
+.size-10 {
+    font-size:10px !important;
+}
+
+.size-12 {
+    font-size:12px !important;
+}
+
+.size-20 {
+    font-size:20px !important;
+}
+
+.size-25 {
+    font-size:25px !important;
+}
+
+.pixelated {
+    font-family: 'kongtext';
+}
+
+.panel-shadow {
+    box-shadow: 0px 0px 11px #888888;
+    border-style: 1px;
+}
+
+.hover-chocolate-red:hover {
+    color: #dd3f20 !important;
+}
+
+.hover-gold:hover {
+    color: #ffc51c !important;
+}
+
+.hover-forest-green:hover {
+    color: #339933 !important;
+}
+
+.hover-navy-blue:hover {
+    color: navy !important;
+}
+
+.horver-dark {
+    color: black !important;
+}
+
+a {
+	cursor:pointer;
+	cursor:hand;
+}
+
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+
+a:hover {
+	color: #FFFFFF;
+}
+
+.progress-wrapper{
+    position: relative;
+    margin:20px auto;
+    font-size: 40px;
+}
+
+.progress{
+    position: absolute;
+    color: #bbb;
+    font-weight: 100;
+    line-height: 1;
+}
+.scroller {
+    height: 100%;
+    overflow-y: hidden;
+    position: relative;
+}

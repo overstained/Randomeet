@@ -1,0 +1,153 @@
+<div class="pixelated" ng-show="firstPersonalityPage">
+							<div class="row">
+								<div class="col-md-2 col-lg-2">
+								</div>
+								<div class="col-md-8 col-lg-8 center-block">
+									 <img src = "assets/personality.png" class="img-responsive" style="width:60%;" alt="Responsive image"><br>
+								</div>
+								<div class="col-md-2 col-lg-2">
+									<button class="btn btn-lg btn-primary" ng-click="firstPersonalityPage = !firstPersonalityPage">Next</button>
+								</div>
+							</div>
+							<div class="row" style="padding:5%;">
+								<span>According to Carl Jung there are 4 polar dimensions:</span>
+							</div>
+							<div class="row" style="font-size:12px;padding:5%;">
+								<div class="col-md-1 col-lg-1">
+								</div>
+								<div class="col-md-10 col-lg-10">
+									<div class="row">
+										<div class="col-lg-4 col-md-4">
+											<span style="color:#31B404;">Extraverted</span> 
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:31B404;">E</span>)
+										</div>
+										<div class="col-lg-2 col-md-2">
+											<span>vs. </span>
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:FFBF00;">I</span>)
+										</div>
+										<div class="col-lg-4 col-md-4">
+											 <span style="color:FFBF00;">Introverted</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4">
+											<span style="color:#31B404;">Sensing</span>
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:31B404;">S</span>)
+										</div>
+										<div class="col-lg-2 col-md-2">
+											<span>vs. </span>
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:FFBF00;">N</span>)
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<span style="color:FFBF00;">Intuition</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4">
+											<span style="color:#31B404;">Feeling</span>
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:31B404;">F</span>)
+										</div>
+										<div class="col-lg-2 col-md-2">
+											<span>vs. </span>
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:FFBF00;">T</span>)
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<span style="color:FFBF00;">Thinking</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4">
+											<span style="color:#31B404;">Judging</span>
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:31B404;">J</span>)
+										</div>
+										<div class="col-lg-2 col-md-2">
+											<span>vs. </span>
+										</div>
+										<div class="col-lg-1 col-md-1">
+											(<span style="color:FFBF00;">P</span>)
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<span style="color:FFBF00;">Perceiving</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-1 col-lg-1">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-4 col-md-4">
+									1. <span style="color:#31B404;">E</span> vs. <span style="color:FFBF00;">I</span>
+								</div>
+							</div>
+							<div class="row">
+									Extraverts project their energy on the external world. They are more socially active and grow
+									through interaction.
+								 	Introverts have as source of energy their internal world. Usualy quiet and reserved, they analyse in 
+									depth their actions.
+							</div><br>
+							<div class="row">
+								<div class="col-lg-4 col-md-4">
+									2. <span style="color:#31B404;">S</span> vs. <span style="color:FFBF00;">N</span>
+								</div>
+							</div>
+							<div class="row">
+								Sensitive people are pragmatic. They pay more attention to physical reality, are concerned with the present and look for practical applications of what they're learning.
+								Intuitive people are theoretical. Tehy pay attention to patterns, look for meaning in the information they learn and are more concerned about the past and the future.
+							</div><br>
+							<div class="row">
+								<div class="col-lg-4 col-md-4">
+									3. <span style="color:#31B404;">F</span> vs. <span style="color:FFBF00;">T</span>
+								</div>
+							</div>
+							<div class="row">
+								People who use Feeling when deciding, usually base their decisions on personal preferences and on the
+							points-of-view of other persons involved in the situation.
+								Thinkers are logical. They base their decisions on truth and principles dettached from any specific setting. 
+							</div><br>
+							<div class="row">
+								<div class="col-lg-4 col-md-4">
+									4. <span style="color:#31B404;">J</span> vs. <span style="color:FFBF00;">P</span>
+								</div>
+							</div>
+							<div class="row">
+								Judgers like things to be organized and planned in advance. They feel most comfortable when everything is secured and under control and are usually reticent to new experiences.
+								Perceivers are flexible and spontaneous. They prefer to understand and adapt rather than organize and are open to new experiences.
+							</div><br>
+							<div class="row" style="margin-top:5%;">
+								<button class="btn btn-lg btn-primary" ng-click="firstPersonalityPage = !firstPersonalityPage">Next</button>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+						<div class="row text-center" style="margin-top: 10%;">
+									<canvas id="polar" class="chart chart-polar-area" chart-data="data" chart-labels="labels" chart-options="options" chart-click="onClick"></canvas>
+							</div>
+							<div class="row" style="margin-top:5%;">
+								<span style="font-size:12px;">Application statistics on personality types:</span>
+							</div>
+							<div class="row" style="margin-top:5%;">
+								<canvas id="pie" class="chart chart-pie" chart-data="globalData" chart-labels="globalLabels" chart-options="globalOptions"></canvas> 
+							</div>

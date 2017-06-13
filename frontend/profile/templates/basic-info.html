@@ -1,0 +1,34 @@
+<div>
+	<form name="profileForm" layout="column" layout-align="center center">
+		<md-input-container class="md-icon-float md-block">
+	      <label> Username </label>
+	      <md-icon md-svg-icon="action:account_circle" class="navy-blue"></md-icon>
+	      <input ng-model="user.username" name="username" ng-pattern="/^[a-zA-Z0-9]{3,15}$/" type="text" required>
+	      <div ng-messages="profileForm.username.$error">
+	          <ng-message when="required" translate> This is required. </ng-message>
+	          <ng-message when="pattern" translate> Username must contain between 3 and 15 alphanumerical characters. </ng-message>
+	          <ng-message when="usernameInUse" translate> Username is taken. </ng-message>
+	      </div>
+	    </md-input-container>
+	    <div layout="column" layout-align="center center">
+	    	<div flex="15">
+			    <md-datepicker name="birthdate" ng-model="user.birthdate" md-placeholder="Enter date of birth"
+		            md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+		        <div class="chocolate-red size-12" ng-messages="profileForm.birthdate.$error">
+		        	 <ng-message when="valid" > Please select a valid date. </ng-message>
+		        	 <ng-message when="mindate"> Date is too early! </ng-message>
+		      		 <ng-message when="maxdate"> Date is too late! </ng-message>
+		        </div>
+		    </div>
+	    </div>
+	</form>
+	<div layout="column" layout-align="center center">
+	    <md-radio-group flex="10" ng-model="user.gender" layout="row" layout-align="center center">
+	      <md-radio-button value="0" class="md-primary"> Male </md-radio-button>
+	      <md-radio-button value="1"> Female </md-radio-button>
+	    </md-radio-group>
+	</div>
+    <div layout="row" layout-align="center center">
+    	<md-button class="md-primary md-raised" ng-click="setBasicProfileInfo(profileForm)"> Next </md-button>
+    </div>
+</div>

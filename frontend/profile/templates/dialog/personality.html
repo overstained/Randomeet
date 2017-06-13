@@ -1,0 +1,122 @@
+<div ng-show="$root.dialog.pageIndex === 0">
+	<div layout="row">
+		<md-card flex="50" layout="column" layout-align="center center">
+			<div layout="column" flex="40" layout-align="center center">
+				<h2 md-title> Current MBTI </h2>
+				<h1 md-theme="red" class="chocolate-red"> ESFJ
+				 	<md-button class="md-icon-button" ng-click="showPersonalityDetails()"  aria-label="personality-info">
+					 	<md-icon md-svg-icon="action:help_outline" class="navy-blue">
+							<md-tooltip class="snow" md-direction="right">
+		                  		More about
+		                	</md-tooltip>
+						</md-icon>
+					</md-button>
+				</h1>
+				<p layout="row" layout-align="center center" flex="10">Best match:&nbsp;<span class="chocolate-red" ng-repeat="match in bestPersonalityMatch">{{match}}<span ng-if="!$last" class="dark">,&nbsp;</span></span></p>
+			</div>
+		</md-card>
+		<div flex="50" layout="column" layout-align="center center">
+			<div layout="column" flex="40" layout-align="center center">
+				<h3 md-title flex="20"> Statistics </h3>
+				<canvas id="polar-area" class="chart chart-polar-area"
+				  chart-data="$parent.data" chart-labels="$parent.labels" chart-legend="false" chart-options="$parent.options">
+				</canvas>
+			</div> 
+		</div>
+	</div>
+	<md-card md-theme="blue">
+		<md-card-title>
+		  <md-card-title-text class="copy-cat">
+		    <span class="md-headline"> 
+		    	{{personalityQuestion.question}}
+		    </span>
+		  </md-card-title-text>
+		</md-card-title>
+		<div layout="row" layout-align="center center">
+			<md-slider flex="80" ng-change="setAnswerText()" ng-model="$parent.slider.value" md-discrete aria-label="Master" step="25"
+			               ng-readonly="readonly"></md-slider>
+		</div>
+		<div layout="row" layout-align="center center" class="copy-cat">
+			{{answerText}}
+		</div>
+		<md-card-actions layout="row" layout-align="center center">
+			<md-button class="md-primary md-raised" ng-click="setPersonalityAnswer()"> Answer </md-button>
+		</md-card-actions>
+	</md-card>
+</div>
+<div ng-show="$root.dialog.pageIndex === 1">
+	<div layout="row" flex>
+		<div layout="column" flex="10">
+		</div>
+		<div layout="column" flex="80" layout-align="center center">
+			<div layout-padding layout-margin layout="row" flex="10" layout-align="center center">
+				According to Carl Jung there are 4 polar dimensions:
+			</div>
+			<div layout="column" flex="30" layout-align="center center">
+				<div layout="row">
+						<span layout="row"  layout-align="center center" layout-padding class="forest-green">Extraverted</span>
+						<span layout="row" layout-align="center center"><span>(<span class="forest-green">E</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding>vs. </span>
+						<span layout="row" layout-align="center center"><span>(<span class="gold">I</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding class="gold">Introverted</span>
+				</div>
+				<div layout="row">
+						<span layout="row" layout-align="center center" layout-padding class="forest-green">Sensing</span>
+						<span layout="row" layout-align="center center"><span>(<span class="forest-green">S</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding>vs. </span>
+						<span layout="row" layout-align="center center"><span>(<span class="gold">N</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding class="gold">Intuition</span>
+				</div>
+				<div layout="row">
+						<span layout="row" layout-align="center center" layout-padding class="forest-green">Feeling</span>
+						<span layout="row" layout-align="center center"><span>(<span class="forest-green">F</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding>vs. </span>
+						<span layout="row" layout-align="center center"><span>(<span class="gold">T</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding class="gold">Thinking</span>
+				</div>
+				<div layout="row">
+						<span layout="row" layout-align="center center" layout-padding class="forest-green">Judging</span>
+						<span layout="row" layout-align="center center"><span>(<span class="forest-green">J</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding>vs. </span>
+						<span layout="row" layout-align="center center"><span>(<span class="gold">P</span>)</span></span>
+						<span layout="row" layout-align="center center" layout-padding class="gold">Perceiving</span>
+				</div>
+			</div>
+			<div layout="column">
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="start center">
+					1. <span layout="row" layout-padding class="forest-green">E</span> vs. <span layout="row" layout-padding class="gold">I</span>
+				</div>
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="start center">
+					Extraverts project their energy on the external world. They are more socially active and grow
+									through interaction.
+				 	Introverts have as source of energy their internal world. Usualy quiet and reserved, they analyse in 
+					depth their actions.
+				</div>
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="start center">
+					2. <span layout="row" layout-padding class="forest-green">S</span> vs. <span layout="row" layout-padding class="gold">N</span>
+				</div>
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="left center">
+					Sensitive people are pragmatic. They pay more attention to physical reality, are concerned with the present and look for practical applications of what they're learning.
+					Intuitive people are theoretical. They pay attention to patterns, look for meaning in the information they learn and are more concerned about the past and the future.
+				</div>
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="left center">
+					3. <span layout="row" layout-padding class="forest-green">F</span> vs. <span layout="row" layout-padding class="gold">T</span>
+				</div>
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="left center">
+					People who use Feeling when deciding, usually base their decisions on personal preferences and on the
+					points-of-view of other persons involved in the situation.
+					Thinkers are logical. They base their decisions on truth and principles dettached from any specific setting.
+				</div>
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="left center">
+					4. <span layout="row" layout-padding class="forest-green">J</span> vs. <span layout="row" layout-padding class="gold">P</span>
+				</div>
+				<div layout="row" flex="20" layout-padding layout-margin layout-align="left center">
+					Judgers like things to be organized and planned in advance. They feel most comfortable when everything is secured and under control and are usually reticent to new experiences.
+					Perceivers are flexible and spontaneous. They prefer to understand and adapt rather than organize and are open to new experiences.
+				</div>
+			</div>
+		</div>
+		<div layout="column" flex="10">
+		</div>
+	</div>
+</div>

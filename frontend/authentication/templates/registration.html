@@ -1,0 +1,33 @@
+<form name="registrationForm">
+	<md-input-container class="md-icon-float md-block">
+      <label> Email </label>
+      <md-icon md-svg-icon="communication:email" class="navy-blue"></md-icon>
+      <input ng-model="user.email" name="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" type="text" required>
+      <div ng-messages="registrationForm.email.$error">
+          <ng-message when="required" translate> This is required. </ng-message>
+          <ng-message when="pattern" translate> Invalid email. </ng-message>
+          <ng-message when="emailInUse" translate> Email in use. </ng-message>
+      </div>
+    </md-input-container>
+	<md-input-container class="md-icon-float md-block">
+      <label> Password </label>
+      <md-icon md-svg-icon="communication:vpn_key" class="navy-blue"></md-icon>
+      <input ng-model="user.password" name="password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/"  type="password" required>
+      <div ng-messages="registrationForm.password.$error">
+          <ng-message when="required" translate> This is required. </ng-message>
+          <ng-message when="pattern" translate> Password must contain between 8 and 16 alphanumerical characters. </ng-message>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-icon-float md-block">
+      <label> Repeat password </label>
+      <md-icon md-svg-icon="communication:vpn_key" class="navy-blue"></md-icon>
+      <input ng-model="user.repeatedPassword" name="repeatedPassword" ng-pattern="^{{user.password}}$" type="password" required>
+      <div ng-messages="registrationForm.repeatedPassword.$error">
+          <ng-message when="required" translate> This is required. </ng-message>
+          <ng-message when="pattern" translate> Passwords do not match. </ng-message>
+      </div>
+    </md-input-container>
+	<div layout="row" layout-align="center center">
+    	<md-button class="md-primary md-raised" ng-click="register()"> Register </md-button>
+    </div>
+</div>
